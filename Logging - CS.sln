@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Core", "CSharp\Core\Mv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogViewer.Core", "CSharp\Core\LogViewer.Core\LogViewer.Core.csproj", "{34F75D8B-6F15-4DE4-8335-FED83557EB8E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{42E99803-0A95-4172-9079-3B8BF8CBDE9F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{42E99803-0A95-4172-9079-3B8BF8CBDE9F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogViewer.Wpf", "CSharp\Controls\LogViewer.Wpf\LogViewer.Wpf.csproj", "{094DF049-194B-43EE-A4EC-EC647FBB44D5}"
 EndProject

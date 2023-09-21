@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading;
 using LogViewer.Core;
+using LogViewer.Wpf;
 using Microsoft.Extensions.Logging;
 using RandomLogging.Service;
 using WpfLoggingNoDI.DataStores;
