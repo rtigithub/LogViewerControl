@@ -5,18 +5,18 @@ namespace WpfLoggingDI.ViewModels;
 
 public class MainViewModel : ViewModel
 {
-    #region Constructor
+     #region Constructor
 
-    public MainViewModel(LogViewerControlViewModel logViewer)
-    {
-        LogViewer = logViewer;
-    }
+     public MainViewModel(LogViewerControlViewModel logViewer)
+     {
+          LogViewer = logViewer;
+     }
 
-    #endregion
+     #endregion Constructor
 
-    #region Properties
+     #region Properties
 
-    public LogViewerControlViewModel LogViewer { get; }
+     public LogViewerControlViewModel LogViewer { get; }
 
-    #endregion
+     #endregion Properties
 }
