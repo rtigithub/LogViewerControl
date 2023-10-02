@@ -374,3 +374,4 @@ FodyWeavers.xsd
 /CSharp/Applications/WpfLoggingDI/appsettings.Production.json
 /CSharp/Applications/WpfLoggingDI/AssemblyInfo.cs
 /CSharp/Applications/WpfLoggingDI/WpfLoggingDI.csproj
+/CSharp/WpfLoggingDI.sln
