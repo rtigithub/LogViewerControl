@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /CSharp/Core/Mvvm.Core/ObservableObject.cs
 /CSharp/Core/Mvvm.Core/ObservableObject2.cs
+/CSharp/Applications/WpfLoggingAttrDI/WpfLoggingAttrDI.csproj
