@@ -37,38 +37,38 @@ public partial class App
             .AddLogViewer()
 
             // Microsoft Logger
-            .Logging.AddDefaultDataStoreLogger();
+            //.Logging.AddDefaultDataStoreLogger();
 
             // uncomment to use custom logging colors (note: System.Drawing namespace)
             //
-            //.Logging.AddDefaultDataStoreLogger(options =>
-            //{
-            //    options.Colors[LogLevel.Trace] = new()
-            //    {
-            //        Foreground = Color.White,
-            //        Background = Color.DarkGray
-            //    };
+            .Logging.AddDefaultDataStoreLogger(options =>
+            {
+                 options.Colors[LogLevel.Trace] = new()
+                 {
+                      Foreground = Color.White,
+                      Background = Color.DarkGray
+                 };
 
-            //    options.Colors[LogLevel.Debug] = new()
-            //    {
-            //        Foreground = Color.White,
-            //        Background = Color.Gray
-            //    };
+                 options.Colors[LogLevel.Debug] = new()
+                 {
+                      Foreground = Color.White,
+                      Background = Color.Gray
+                 };
 
-            //    options.Colors[LogLevel.Information] = new()
-            //    {
-            //        Foreground = Color.White,
-            //        Background = Color.DodgerBlue
-            //    };
+                 options.Colors[LogLevel.Information] = new()
+                 {
+                      Foreground = Color.White,
+                      Background = Color.DodgerBlue
+                 };
 
-            //    options.Colors[LogLevel.Warning] = new()
-            //    {
-            //        Foreground = Color.White,
-            //        Background = Color.Orchid
-            //    };
-            //});
+                 options.Colors[LogLevel.Warning] = new()
+                 {
+                      Foreground = Color.White,
+                      Background = Color.Orchid
+                 };
+            });
 
-        IServiceCollection services = builder.Services;
+          IServiceCollection services = builder.Services;
 
         services
             .AddSingleton<MainViewModel>()

@@ -7,4 +7,12 @@
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ObservableObject.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+  </ItemGroup>
+
 </Project>
