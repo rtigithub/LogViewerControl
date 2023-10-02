@@ -1,15 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Drawing;
+﻿using System;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
 using LogViewer.Wpf;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MsLogger.Core;
 using RandomLogging.Service;
 using WpfLoggingDI.ViewModels;
-using MsLogger.Core;
 
 namespace WpfLoggingDI;
 
@@ -70,82 +69,82 @@ public partial class App
 
           IServiceCollection services = builder.Services;
 
-        services
-            .AddSingleton<MainViewModel>()
-            .AddSingleton<MainWindow>(service => new MainWindow
-            {
-                DataContext = service.GetRequiredService<MainViewModel>()
-            });
+          services
+              .AddSingleton<MainViewModel>()
+              .AddSingleton<MainWindow>(service => new MainWindow
+              {
+                   DataContext = service.GetRequiredService<MainViewModel>()
+              });
 
-        _host = builder.Build();
-        _cancellationTokenSource = new();
-    }
+          _host = builder.Build();
+          _cancellationTokenSource = new();
+     }
 
-    #endregion
+     #endregion Constructor
 
-    #region Fields
+     #region Fields
 
-    private readonly IHost? _host;
-    private readonly CancellationTokenSource _cancellationTokenSource;
+     private readonly IHost? _host;
+     private readonly CancellationTokenSource _cancellationTokenSource;
 
-    #endregion
+     #endregion Fields
 
-    #region Methods
+     #region Methods
 
-    private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        => MessageBox.Show(
-            ((Exception)e.ExceptionObject).Message,
-            "Unhandled Error",
-            MessageBoxButton.OK,
-            MessageBoxImage.Stop);
+     private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+         => MessageBox.Show(
+             ((Exception)e.ExceptionObject).Message,
+             "Unhandled Error",
+             MessageBoxButton.OK,
+             MessageBoxImage.Stop);
 
-    protected override void OnStartup(StartupEventArgs e)
-    {
-        try
-        {
-            LogStartingMode();
+     protected override void OnStartup(StartupEventArgs e)
+     {
+          try
+          {
+               LogStartingMode();
 
-            // set and show
-            MainWindow = _host!.Services.GetRequiredService<MainWindow>();
-            MainWindow.Show();
+               // set and show
+               MainWindow = _host!.Services.GetRequiredService<MainWindow>();
+               MainWindow.Show();
 
-            // startup background services
-            _ = _host.StartAsync(_cancellationTokenSource.Token);
-        }
-        catch (OperationCanceledException)
-        {
-            // skip
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message, "Unhandled Error", MessageBoxButton.OK, MessageBoxImage.Stop);
-        }
-    }
+               // startup background services
+               _ = _host.StartAsync(_cancellationTokenSource.Token);
+          }
+          catch (OperationCanceledException)
+          {
+               // skip
+          }
+          catch (Exception ex)
+          {
+               MessageBox.Show(ex.Message, "Unhandled Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+          }
+     }
 
-    protected override void OnExit(ExitEventArgs e)
-    {
-        // tell the background services that we are shutting down
-        _host!.StopAsync(_cancellationTokenSource.Token);
+     protected override void OnExit(ExitEventArgs e)
+     {
+          // tell the background services that we are shutting down
+          _host!.StopAsync(_cancellationTokenSource.Token);
 
-        base.OnExit(e);
-    }
+          base.OnExit(e);
+     }
 
-    private void LogStartingMode()
-    {
-        // Get the Launch mode
-        bool isDevelopment = string.Equals(Environment.GetEnvironmentVariable("DOTNET_MODIFIABLE_ASSEMBLIES"), "debug",
-                                           StringComparison.InvariantCultureIgnoreCase);
+     private void LogStartingMode()
+     {
+          // Get the Launch mode
+          bool isDevelopment = string.Equals(Environment.GetEnvironmentVariable("DOTNET_MODIFIABLE_ASSEMBLIES"), "debug",
+                                             StringComparison.InvariantCultureIgnoreCase);
 
-        // initialize a logger & EventId
-        ILogger<App> logger = _host!.Services.GetRequiredService<ILogger<App>>();
-        EventId eventId = new EventId(id: 0, name: Assembly.GetEntryAssembly()!.GetName().Name);
-        
-        // log a test pattern for each log level
-        logger.TestPattern(eventId: eventId);
+          // initialize a logger & EventId
+          ILogger<App> logger = _host!.Services.GetRequiredService<ILogger<App>>();
+          EventId eventId = new EventId(id: 0, name: Assembly.GetEntryAssembly()!.GetName().Name);
 
-        // log that we have started...
-        logger.Emit(eventId, LogLevel.Information, $"Running in {(isDevelopment ? "Debug" : "Release")} mode");
-    }
+          // log a test pattern for each log level
+          logger.TestPattern(eventId: eventId);
 
-    #endregion
+          // log that we have started...
+          logger.Emit(eventId, LogLevel.Information, $"Running in {(isDevelopment ? "Debug" : "Release")} mode");
+     }
+
+     #endregion Methods
 }
