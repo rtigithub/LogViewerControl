@@ -4,7 +4,7 @@
 
              xmlns:converters="clr-namespace:LogViewer.Wpf.Converters"
 
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
 
@@ -22,15 +22,15 @@
                   LayoutUpdated="OnLayoutUpdated">
             <ListView.Resources>
                 <Style TargetType="{x:Type GridViewColumnHeader}">
-                    <Setter Property="Background" Value="LightGray"/>
-                    <Setter Property="Padding" Value="6 4"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="Background" Value="LightGray" />
+                    <Setter Property="Padding" Value="6 4" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
                 </Style>
                 <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="BorderBrush" Value="Silver"/>
-                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="BorderBrush" Value="Silver" />
+                    <Setter Property="BorderThickness" Value="0,0,0,1" />
                     <Setter Property="Foreground" Value="{Binding Color.Foreground,
                         Converter={StaticResource ColorConverter}}" />
                     <Setter Property="Background" Value="{Binding Color.Background,
@@ -46,8 +46,7 @@
                                                           Margin="{TemplateBinding Padding}"
                                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
@@ -59,35 +58,35 @@
                     <GridViewColumn Header="Time" Width="140">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Timestamp}"/>
+                                <TextBlock Text="{Binding Timestamp}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Level" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding LogLevel}"/>
+                                <TextBlock Text="{Binding LogLevel}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Event Id" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding EventId}"/>
+                                <TextBlock Text="{Binding EventId}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="State" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding State}"/>
+                                <TextBlock Text="{Binding State}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Exception" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Exception}"/>
+                                <TextBlock Text="{Binding Exception}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -95,11 +94,10 @@
             </ListView.View>
         </ListView>
 
-        <CheckBox x:Name="CanAutoScroll" 
+        <CheckBox x:Name="CanAutoScroll"
                   Content="Auto Scroll log"
                   IsChecked="True"
                   Grid.Row="1"
                   Margin="20 10" />
     </Grid>
-
 </UserControl>

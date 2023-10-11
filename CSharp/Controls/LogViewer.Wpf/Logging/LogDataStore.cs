@@ -5,10 +5,10 @@ namespace LogViewer.Wpf.Logging;
 
 public sealed class LogDataStore : Core.LogDataStore
 {
-    #region Methods
+     #region Public Methods
 
-    public override void AddEntry(LogModel logModel)
+     public override void AddEntry(LogModel logModel)
         => DispatcherHelper.Execute(() => base.AddEntry(logModel));
 
-    #endregion
+     #endregion Public Methods
 }

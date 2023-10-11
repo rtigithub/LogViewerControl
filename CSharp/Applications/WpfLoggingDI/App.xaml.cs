@@ -1,21 +1,29 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
 using LogViewer.Wpf;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MsLogger.Core;
 using RandomLogging.Service;
 using WpfLoggingDI.ViewModels;
-using MsLogger.Core;
 
 namespace WpfLoggingDI;
 
 public partial class App
 {
-     #region Constructor
+     #region Private Fields
+
+     private readonly CancellationTokenSource _cancellationTokenSource;
+
+     private readonly IHost? _host;
+
+     #endregion Private Fields
+
+     #region Public Constructors
 
      public App()
      {
@@ -81,23 +89,17 @@ public partial class App
           _cancellationTokenSource = new();
      }
 
-     #endregion
+     #endregion Public Constructors
 
-     #region Fields
+     #region Protected Methods
 
-     private readonly IHost? _host;
-     private readonly CancellationTokenSource _cancellationTokenSource;
+     protected override void OnExit(ExitEventArgs e)
+     {
+          // tell the background services that we are shutting down
+          _host!.StopAsync(_cancellationTokenSource.Token);
 
-     #endregion
-
-     #region Methods
-
-     private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
-         => MessageBox.Show(
-             ((Exception)e.ExceptionObject).Message,
-             "Unhandled Error",
-             MessageBoxButton.OK,
-             MessageBoxImage.Stop);
+          base.OnExit(e);
+     }
 
      protected override void OnStartup(StartupEventArgs e)
      {
@@ -122,13 +124,9 @@ public partial class App
           }
      }
 
-     protected override void OnExit(ExitEventArgs e)
-     {
-          // tell the background services that we are shutting down
-          _host!.StopAsync(_cancellationTokenSource.Token);
+     #endregion Protected Methods
 
-          base.OnExit(e);
-     }
+     #region Private Methods
 
      private void LogStartingMode()
      {
@@ -147,5 +145,12 @@ public partial class App
           logger.Emit(eventId, LogLevel.Information, $"Running in {(isDevelopment ? "Debug" : "Release")} mode");
      }
 
-     #endregion
+     private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+                        => MessageBox.Show(
+             ((Exception)e.ExceptionObject).Message,
+             "Unhandled Error",
+             MessageBoxButton.OK,
+             MessageBoxImage.Stop);
+
+     #endregion Private Methods
 }

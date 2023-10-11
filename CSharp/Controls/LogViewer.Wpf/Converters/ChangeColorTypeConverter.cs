@@ -8,16 +8,20 @@ namespace LogViewer.Wpf.Converters;
 
 public class ChangeColorTypeConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        SysDrawColor sysDrawColor = (SysDrawColor)value;
-        return new SolidColorBrush(Color.FromArgb(
-            sysDrawColor.A,
-            sysDrawColor.R,
-            sysDrawColor.G,
-            sysDrawColor.B));
-    }
+     #region Public Methods
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        => throw new NotImplementedException();
+     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+     {
+          SysDrawColor sysDrawColor = (SysDrawColor)value;
+          return new SolidColorBrush(Color.FromArgb(
+              sysDrawColor.A,
+              sysDrawColor.R,
+              sysDrawColor.G,
+              sysDrawColor.B));
+     }
+
+     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+         => throw new NotImplementedException();
+
+     #endregion Public Methods
 }

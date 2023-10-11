@@ -1,3 +1,6 @@
-﻿namespace Mvvm.Core;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class ViewModel : ObservableObject { /* skip */ }
+namespace Mvvm.Core;
+
+public class ViewModel : ObservableObject
+{ /* skip */ }

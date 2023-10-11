@@ -6,23 +6,31 @@ namespace LogViewer.Wpf;
 
 public partial class LogViewerControl
 {
-    public LogViewerControl() => InitializeComponent();
+     #region Public Constructors
 
-    private void OnLayoutUpdated(object? sender, EventArgs e)
-    {
-        if (!CanAutoScroll.IsChecked == true)
-            return;
+     public LogViewerControl() => InitializeComponent();
 
-        // design time
-        if (DataContext is null)
-            return;
+     #endregion Public Constructors
 
-        // Okay, we can now get the item and scroll into view
-        LogModel? item = (DataContext as ILogDataStoreImpl)?.DataStore.Entries.LastOrDefault();
-        
-        if (item is null)
-            return;
+     #region Private Methods
 
-        ListView.ScrollIntoView(item);
-    }
+     private void OnLayoutUpdated(object? sender, EventArgs e)
+     {
+          if (!CanAutoScroll.IsChecked == true)
+               return;
+
+          // design time
+          if (DataContext is null)
+               return;
+
+          // Okay, we can now get the item and scroll into view
+          LogModel? item = (DataContext as ILogDataStoreImpl)?.DataStore.Entries.LastOrDefault();
+
+          if (item is null)
+               return;
+
+          ListView.ScrollIntoView(item);
+     }
+
+     #endregion Private Methods
 }

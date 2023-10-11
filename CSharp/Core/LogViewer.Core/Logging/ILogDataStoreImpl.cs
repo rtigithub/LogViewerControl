@@ -2,5 +2,9 @@
 
 public interface ILogDataStoreImpl
 {
-    public ILogDataStore DataStore { get; }
+     #region Public Properties
+
+     public ILogDataStore DataStore { get; }
+
+     #endregion Public Properties
 }

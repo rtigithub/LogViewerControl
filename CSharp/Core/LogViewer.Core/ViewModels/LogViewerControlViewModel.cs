@@ -4,18 +4,18 @@ namespace LogViewer.Core.ViewModels;
 
 public class LogViewerControlViewModel : ViewModel, ILogDataStoreImpl
 {
-    #region Constructor
+     #region Public Constructors
 
-    public LogViewerControlViewModel(ILogDataStore dataStore)
-    {
-        DataStore = dataStore;
-    }
+     public LogViewerControlViewModel(ILogDataStore dataStore)
+     {
+          DataStore = dataStore;
+     }
 
-    #endregion
+     #endregion Public Constructors
 
-    #region Properties
+     #region Public Properties
 
-    public ILogDataStore DataStore { get; set; }
+     public ILogDataStore DataStore { get; set; }
 
-    #endregion
+     #endregion Public Properties
 }

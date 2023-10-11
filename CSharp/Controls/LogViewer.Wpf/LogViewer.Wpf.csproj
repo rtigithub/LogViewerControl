@@ -2,8 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
+       <LangVersion>11.0</LangVersion>
     <Nullable>enable</Nullable>
+       <NeutralLanguage>en-US</NeutralLanguage>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

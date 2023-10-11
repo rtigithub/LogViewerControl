@@ -19,5 +19,4 @@
     </Window.Resources>
 
     <ContentPresenter Content="{Binding LogViewer}" />
-
 </Window>
